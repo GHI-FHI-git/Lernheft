@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19233b">
+  <meta name="description" content="Lernhefte, Übungshefte und passende Lösungen für Deutsch, Mathematik und Französisch – gedruckt und per Post geliefert.">
+  <title>Lehrmittel für einfaches Lernen</title>
+  <style>
+    :root {
+      --ink: #19233b;
+      --muted: #62708a;
+      --paper: #f6f8fd;
+      --line: #e5eaf3;
+      --purple: #6156d9;
+      --purple-dark: #4c40c7;
+      --de: #ec6a63;
+      --ma: #5582eb;
+      --fr: #28a98a;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; line-height: 1.55; color: var(--ink); background: var(--paper); }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1130px, calc(100% - 40px)); margin-inline: auto; }
+    .site-header { position: relative; background: #fff; border-bottom: 1px solid var(--line); }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 82px; }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 850; font-size: 16px; line-height: 1.25; max-width: 300px; letter-spacing: -.35px; }
+    .brand-icon { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 13px; background: #efeefe; color: var(--purple); }
+    .brand-icon svg { width: 25px; height: 25px; }
+    nav { display: flex; gap: clamp(14px, 3vw, 32px); align-items: center; font-size: 14px; font-weight: 650; }
+    nav a { text-decoration: none; }
+    nav a:not(.nav-cta):hover { color: var(--purple); }
+    .nav-cta { padding: 10px 17px; border-radius: 11px; background: var(--purple); color: #fff; }
+    .nav-cta:hover { background: var(--purple-dark); }
+    .hero { overflow: hidden; background: radial-gradient(circle at 92% 6%, #d8d5ff 0, transparent 31%), linear-gradient(140deg,#f4f1ff 0%,#f8faff 58%,#effcf7 100%); }
+    .hero-inner { min-height: 450px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 46px; padding-block: 72px; }
+    .eyebrow { display: inline-block; color: #5042bf; background: #e5e1ff; padding: 8px 13px; font-weight: 750; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; border-radius: 999px; }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { max-width: 640px; font-size: clamp(37px,5vw,61px); letter-spacing: -.052em; line-height: 1.09; margin: 19px 0; }
+    h1 span { color: var(--purple); }
+    .hero p { max-width: 490px; color: #53617b; font-size: 17px; margin-bottom: 29px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 12px; padding: 13px 19px; text-decoration: none; text-align: center; font-weight: 750; font-size: 14px; transition: transform .15s, background .15s; }
+    .btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .btn-primary { background: var(--purple); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: var(--purple-dark); }
+    .btn-outline { background: #fff; border: 1px solid #d6dced; color: var(--ink); }
+    .btn:disabled { cursor: not-allowed; opacity: .48; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; }
+    .book-stack { position: relative; min-height: 304px; display: flex; justify-content: center; align-items: center; }
+    .book { position: absolute; width: clamp(150px, 16vw, 200px); height: clamp(207px, 21vw, 260px); padding: 24px 20px; border-radius: 7px 16px 16px 7px; color: white; box-shadow: 10px 16px 27px #30335328, inset 7px 0 #ffffff32; border-left: 3px solid #ffffff60; display: flex; flex-direction: column; justify-content: space-between; }
+    .book::after { content:""; position: absolute; bottom: 15px; right: 12px; left: 19px; border-top: 1px solid #ffffff6b; }
+    .book small { font-size: 11px; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; opacity: .85; }
+    .book strong { font-size: clamp(17px, 2vw, 23px); line-height: 1.1; letter-spacing: -.03em; }
+    .book em { font-size: 40px; font-weight: 800; font-style: normal; line-height: 1; opacity: .92; }
+    .book-one { background: #ed736a; transform: translate(-102px,23px) rotate(-15deg); }
+    .book-two { background: #5683ec; transform: translate(12px,-18px) rotate(2deg); z-index: 2; }
+    .book-three { background: #25ad90; transform: translate(123px,25px) rotate(15deg); }
+    section { scroll-margin-top: 22px; }
+    .section-pad { padding-block: 78px; }
+    .section-heading { max-width: 710px; margin-bottom: 30px; }
+    .kicker { color: var(--purple); text-transform: uppercase; font-size: 12px; font-weight: 850; letter-spacing: .12em; margin-bottom: 8px; }
+    h2 { font-size: clamp(28px,3.3vw,38px); line-height: 1.2; letter-spacing: -.035em; margin-bottom: 10px; }
+    .section-heading p, .muted { color: var(--muted); }
+    .subjects { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+    .subject-card { background: white; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: 0 8px 32px #26304b07; }
+    .subject-top { padding: 25px 25px 21px; min-height: 151px; }
+    .subject-top.de { background: #fff0ed; }
+    .subject-top.ma { background: #edf3ff; }
+    .subject-top.fr { background: #eaf9f3; }
+    .subject-tag { display: inline-block; font-size: 11px; text-transform: uppercase; font-weight: 850; letter-spacing: .12em; padding: 5px 9px; border-radius: 7px; background: #ffffffa8; }
+    .subject-top h3 { font-size: 25px; letter-spacing: -.04em; margin: 15px 0 0; }
+    .subject-content { padding: 22px 25px 25px; }
+    .category-label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .12em; font-weight: 850; margin: 6px 0 10px; }
+    .product-row { display: flex; justify-content: space-between; gap: 14px; padding-block: 8px; font-size: 14px; align-items: baseline; }
+    .product-row + .product-row { border-top: 1px dashed var(--line); }
+    .product-row strong { white-space: nowrap; font-size: 15px; }
+    .category-divider { border-top: 1px solid var(--line); margin: 12px 0 15px; }
+    .card-action { width: 100%; margin-top: 18px; }
+    .badge-info { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 11px 16px; background: #eae8ff; color: #5147b2; font-weight: 700; font-size: 14px; border-radius: 12px; margin-top: 25px; }
+    .steps-section { background: #fff; border-block: 1px solid var(--line); }
+    .steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px; }
+    .step { padding: 24px; background: var(--paper); border-radius: 19px; }
+    .step-num { display: grid; place-items: center; width: 37px; height: 37px; background: #e8e5ff; color: var(--purple); border-radius: 12px; font-weight: 850; margin-bottom: 16px; }
+    .step h3 { font-size: 18px; margin-bottom: 6px; }
+    .step p { color: var(--muted); font-size: 14px; margin-bottom: 0; }
+    .inquiry-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 27px; align-items: start; }
+    .form-card, .side-card { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px,3vw,32px); box-shadow: 0 8px 32px #26304b07; }
+    .form-card h3 { font-size: 22px; letter-spacing: -.025em; margin-bottom: 8px; }
+    .form-card>p { color: var(--muted); font-size: 14px; }
+    .qty-group { border: 0; padding: 0; margin: 26px 0 0; }
+    .qty-group legend { font-size: 15px; font-weight: 850; margin-bottom: 10px; }
+    .qty-row { display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line); padding: 9px 0; font-size: 14px; }
+    .qty-row .item-price { color: var(--muted); display: block; font-size: 12px; }
+    .qty-row input { width: 76px; flex: none; border-radius: 9px; border: 1px solid #cfd6e5; background: #fff; padding: 9px; color: var(--ink); text-align: center; }
+    input:focus-visible, textarea:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #a99fff; outline-offset: 3px; }
+    .field { margin-top: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 750; margin-bottom: 6px; }
+    .field input, .field textarea { border: 1px solid #ccd5e5; width: 100%; border-radius: 10px; padding: 11px 13px; resize: vertical; background: white; }
+    .field textarea { min-height: 96px; }
+    .fine-print { font-size: 12px; color: var(--muted); margin-top: 13px; }
+    .summary-heading { margin: 0 0 17px; font-size: 20px; }
+    .summary { display: flex; flex-direction: column; gap: 11px; }
+    .summary-line { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
+    .summary-line span:first-child { color: var(--muted); }
+    .summary-total { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 8px; font-size: 18px; font-weight: 850; }
+    .discount-hint { margin-top: 17px; padding: 12px 14px; border-radius: 11px; background: #f1efff; color: #5147a8; font-size: 13px; font-weight: 650; }
+    .mail-status { color: #92602b; background: #fff5df; border-radius: 11px; font-size: 13px; line-height: 1.5; padding: 12px 14px; margin-top: 22px; }
+    .side-card .btn { width: 100%; margin-top: 18px; }
+    .side-card .btn + .btn { margin-top: 9px; }
+    .side-note { font-size: 13px; color: var(--muted); margin-top: 15px; }
+    .site-footer { background: var(--ink); color: white; padding-block: 33px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px; }
+    .footer-inner p { margin: 5px 0 0; color: #c0cae2; }
+    .footer-inner a { color: white; text-underline-offset: 3px; }
+    @media(max-width: 880px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 7px; padding-block: 59px 38px; }
+      .book-stack { min-height: 298px; transform: scale(.85); }
+      .inquiry-layout { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 740px) {
+      .subjects { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 12px; }
+      .subject-top { min-height: auto; }
+      .section-pad { padding-block: 58px; }
+      nav { gap: 13px; }
+      nav a:not(.nav-cta) { display: none; }
+      .brand { font-size: 13px; }
+      .brand-icon { width: 36px; height: 36px; }
+      .header-inner { min-height: 68px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media(max-width: 360px) { .container { width: min(100% - 24px,1130px); } .book-stack { transform: scale(.72); min-height: 244px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#start" aria-label="Zur Startseite">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C9.4 4.7 6.5 4.4 3 5v13c3.5-.6 6.4-.3 9 1.5 2.6-1.8 5.5-2.1 9-1.5V5c-3.5-.6-6.4-.3-9 1.5Z"/><path d="M12 6.5v13"/></svg></span>
+        <span>Lehrmittel für<br>einfaches Lernen</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#angebote">Lehrmittel</a>
+        <a href="#ablauf">So funktioniert's</a>
+        <a href="#anfrage" class="nav-cta">Anfrage</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="start">
+    <div class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Gedruckte Lehrmittel · Per Post</span>
+          <h1>Lernen leicht <span>gemacht.</span></h1>
+          <p>Entdecke Lernhefte, Übungshefte und passende Lösungen für Deutsch, Mathematik und Französisch – übersichtlich und unkompliziert.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#angebote">Lehrmittel entdecken →</a>
+            <a class="btn btn-outline" href="#ablauf">So bestellst du</a>
+          </div>
+        </div>
+        <div class="book-stack" aria-hidden="true">
+          <div class="book book-one"><small>Lehrmittel</small><strong>Deutsch</strong><em>Aa</em></div>
+          <div class="book book-two"><small>Lehrmittel</small><strong>Mathematik</strong><em>∑</em></div>
+          <div class="book book-three"><small>Lehrmittel</small><strong>Französisch</strong><em>Fr</em></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="angebote" class="section-pad">
+      <div class="container">
+        <div class="section-heading">
+          <p class="kicker">Unser Angebot</p>
+          <h2>Drei Fächer. Alles im Überblick.</h2>
+          <p>Jedes Heft und jede dazugehörige Lösung ist einzeln erhältlich. Alle Preise in Schweizer Franken (CHF).</p>
+        </div>
+        <div class="subjects">
+          <article class="subject-card">
+            <div class="subject-top de"><span class="subject-tag">Sprache</span><h3>Deutsch</h3></div>
+            <div class="subject-content">
+              <p class="category-label">Hefte</p>
+              <div class="product-row"><span>Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Übungsheft</span><strong>CHF 15.–</strong></div>
+              <div class="category-divider"></div>
+              <p class="category-label">Lösungen einzeln</p>
+              <div class="product-row"><span>Lösungen zum Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Lösungen zum Übungsheft</span><strong>CHF 15.–</strong></div>
+              <a href="#anfrage" class="btn btn-outline card-action">Deutsch anfragen →</a>
+            </div>
+          </article>
+          <article class="subject-card">
+            <div class="subject-top ma"><span class="subject-tag">Zahlen &amp; mehr</span><h3>Mathematik</h3></div>
+            <div class="subject-content">
+              <p class="category-label">Hefte</p>
+              <div class="product-row"><span>Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Übungsheft</span><strong>CHF 15.–</strong></div>
+              <div class="category-divider"></div>
+              <p class="category-label">Lösungen einzeln</p>
+              <div class="product-row"><span>Lösungen zum Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Lösungen zum Übungsheft</span><strong>CHF 15.–</strong></div>
+              <a href="#anfrage" class="btn btn-outline card-action">Mathematik anfragen →</a>
+            </div>
+          </article>
+          <article class="subject-card">
+            <div class="subject-top fr"><span class="subject-tag">Langue</span><h3>Französisch</h3></div>
+            <div class="subject-content">
+              <p class="category-label">Hefte</p>
+              <div class="product-row"><span>Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Übungsheft</span><strong>CHF 15.–</strong></div>
+              <div class="category-divider"></div>
+              <p class="category-label">Lösungen einzeln</p>
+              <div class="product-row"><span>Lösungen zum Lernheft</span><strong>CHF 11.–</strong></div>
+              <div class="product-row"><span>Lösungen zum Übungsheft</span><strong>CHF 15.–</strong></div>
+              <a href="#anfrage" class="btn btn-outline card-action">Französisch anfragen →</a>
+            </div>
+          </article>
+        </div>
+        <div class="badge-info">✦ Mengenrabatt bei einer Bestellung ab 10 Heften – Rabatt auf Anfrage.</div>
+      </div>
+    </section>
+
+    <section id="ablauf" class="steps-section section-pad">
+      <div class="container">
+        <div class="section-heading">
+          <p class="kicker">Ganz einfach</p>
+          <h2>So funktioniert deine Bestellung</h2>
+          <p>Kein Webshop, kein Benutzerkonto – alles direkt per E-Mail.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="step-num">01</div><h3>Lehrmittel auswählen</h3><p>Wähle die gewünschten Hefte und Lösungen und gib die Mengen an.</p></div>
+          <div class="step"><div class="step-num">02</div><h3>Anfrage per E-Mail</h3><p>Schicke deine unverbindliche Anfrage. Du erhältst die Bestätigung, den allfälligen Mengenrabatt und die Versandkosten.</p></div>
+          <div class="step"><div class="step-num">03</div><h3>Einzahlen &amp; erhalten</h3><p>Nach Erhalt der Zahlungsinformationen bezahlst du per Einzahlung. Die gedruckten Lehrmittel werden anschliessend per Post verschickt.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anfrage" class="section-pad">
+      <div class="container">
+        <div class="section-heading">
+          <p class="kicker">Unverbindlich anfragen</p>
+          <h2>Was möchtest du bestellen?</h2>
+          <p>Stelle deine Anfrage zusammen. Beim Absenden wird dein E-Mail-Programm mit dem fertigen Nachrichtentext geöffnet – es findet keine Onlinezahlung statt.</p>
+        </div>
+        <div class="inquiry-layout">
+          <form class="form-card" id="request-form" onsubmit="return false">
+            <h3>Deine Auswahl</h3>
+            <p>Trage bei allen gewünschten Artikeln die Anzahl ein. Lasse die anderen Felder auf 0.</p>
+            <fieldset class="qty-group">
+              <legend>Deutsch</legend>
+              <div class="qty-row"><label for="de-le">Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="de-le" type="number" min="0" max="99" step="1" value="0" data-subject="Deutsch" data-product="Lernheft" data-price="11" aria-label="Anzahl Deutsch Lernheft"></div>
+              <div class="qty-row"><label for="de-ue">Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="de-ue" type="number" min="0" max="99" step="1" value="0" data-subject="Deutsch" data-product="Übungsheft" data-price="15" aria-label="Anzahl Deutsch Übungsheft"></div>
+              <div class="qty-row"><label for="de-ll">Lösungen zum Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="de-ll" type="number" min="0" max="99" step="1" value="0" data-subject="Deutsch" data-product="Lösungen zum Lernheft" data-price="11" aria-label="Anzahl Deutsch Lösungen zum Lernheft"></div>
+              <div class="qty-row"><label for="de-ul">Lösungen zum Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="de-ul" type="number" min="0" max="99" step="1" value="0" data-subject="Deutsch" data-product="Lösungen zum Übungsheft" data-price="15" aria-label="Anzahl Deutsch Lösungen zum Übungsheft"></div>
+            </fieldset>
+            <fieldset class="qty-group">
+              <legend>Mathematik</legend>
+              <div class="qty-row"><label for="ma-le">Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="ma-le" type="number" min="0" max="99" step="1" value="0" data-subject="Mathematik" data-product="Lernheft" data-price="11" aria-label="Anzahl Mathematik Lernheft"></div>
+              <div class="qty-row"><label for="ma-ue">Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="ma-ue" type="number" min="0" max="99" step="1" value="0" data-subject="Mathematik" data-product="Übungsheft" data-price="15" aria-label="Anzahl Mathematik Übungsheft"></div>
+              <div class="qty-row"><label for="ma-ll">Lösungen zum Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="ma-ll" type="number" min="0" max="99" step="1" value="0" data-subject="Mathematik" data-product="Lösungen zum Lernheft" data-price="11" aria-label="Anzahl Mathematik Lösungen zum Lernheft"></div>
+              <div class="qty-row"><label for="ma-ul">Lösungen zum Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="ma-ul" type="number" min="0" max="99" step="1" value="0" data-subject="Mathematik" data-product="Lösungen zum Übungsheft" data-price="15" aria-label="Anzahl Mathematik Lösungen zum Übungsheft"></div>
+            </fieldset>
+            <fieldset class="qty-group">
+              <legend>Französisch</legend>
+              <div class="qty-row"><label for="fr-le">Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="fr-le" type="number" min="0" max="99" step="1" value="0" data-subject="Französisch" data-product="Lernheft" data-price="11" aria-label="Anzahl Französisch Lernheft"></div>
+              <div class="qty-row"><label for="fr-ue">Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="fr-ue" type="number" min="0" max="99" step="1" value="0" data-subject="Französisch" data-product="Übungsheft" data-price="15" aria-label="Anzahl Französisch Übungsheft"></div>
+              <div class="qty-row"><label for="fr-ll">Lösungen zum Lernheft<span class="item-price">CHF 11.– / Stück</span></label><input id="fr-ll" type="number" min="0" max="99" step="1" value="0" data-subject="Französisch" data-product="Lösungen zum Lernheft" data-price="11" aria-label="Anzahl Französisch Lösungen zum Lernheft"></div>
+              <div class="qty-row"><label for="fr-ul">Lösungen zum Übungsheft<span class="item-price">CHF 15.– / Stück</span></label><input id="fr-ul" type="number" min="0" max="99" step="1" value="0" data-subject="Französisch" data-product="Lösungen zum Übungsheft" data-price="15" aria-label="Anzahl Französisch Lösungen zum Übungsheft"></div>
+            </fieldset>
+            <div class="field"><label for="customer-name">Dein Name (freiwillig)</label><input id="customer-name" type="text" autocomplete="name" placeholder="Vor- und Nachname"></div>
+            <div class="field"><label for="message">Nachricht (freiwillig)</label><textarea id="message" placeholder="Fragen oder zusätzliche Angaben ..."></textarea></div>
+            <p class="fine-print">Die Angaben werden auf dieser Seite nicht gespeichert oder an einen Server übertragen. Eine E-Mail wird erst verschickt, wenn du sie in deinem E-Mail-Programm selbst sendest.</p>
+          </form>
+          <aside class="side-card" aria-live="polite">
+            <h3 class="summary-heading">Deine Anfrage</h3>
+            <div class="summary">
+              <div class="summary-line"><span>Ausgewählte Artikel</span><strong id="items-count">0 Stück</strong></div>
+              <div class="summary-line summary-total"><span>Zwischensumme</span><strong id="subtotal">CHF 0.–</strong></div>
+            </div>
+            <div class="discount-hint" id="discount-hint">Ab 10 Heften kannst du einen Mengenrabatt anfragen.</div>
+            <p class="side-note">Die Zwischensumme ist unverbindlich, ohne allfälligen Mengenrabatt und ohne Versandkosten. Den definitiven Betrag erfährst du per E-Mail.</p>
+            <div id="mail-status" class="mail-status" role="status">Wähle mindestens einen Artikel aus, um deine E-Mail-Anfrage vorzubereiten.</div>
+            <button id="mail-button" type="button" class="btn btn-primary" disabled>E-Mail-Anfrage öffnen →</button>
+            <button id="copy-button" type="button" class="btn btn-outline">Anfragetext kopieren</button>
+            <p class="fine-print" id="action-feedback" role="status"></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div><strong>Lehrmittel für einfaches Lernen</strong><p>Deutsch · Mathematik · Französisch · Gedruckt per Post</p><p>Kontakt: <a href="mailto:lehrmittel.schweiz@gmail.com">lehrmittel.schweiz@gmail.com</a></p></div>
+      <a href="#start">Zurück nach oben ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const CONTACT_EMAIL = "lehrmittel.schweiz@gmail.com";
+
+    const quantityInputs = [...document.querySelectorAll('input[data-product]')];
+    const mailButton = document.getElementById('mail-button');
+    const feedback = document.getElementById('action-feedback');
+    const mailStatus = document.getElementById('mail-status');
+    const hasEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(CONTACT_EMAIL.trim());
+
+    function selection() {
+      return quantityInputs.flatMap(input => {
+        const raw = Number(input.value);
+        const quantity = Number.isInteger(raw) && raw > 0 ? Math.min(raw, 99) : 0;
+        return quantity ? [{ subject: input.dataset.subject, product: input.dataset.product, quantity, price: Number(input.dataset.price) }] : [];
+      });
+    }
+
+    function updateSummary() {
+      const items = selection();
+      const count = items.reduce((sum, item) => sum + item.quantity, 0);
+      const total = items.reduce((sum, item) => sum + item.quantity * item.price, 0);
+      const bookletCount = items.filter(item => item.product === 'Lernheft' || item.product === 'Übungsheft').reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('items-count').textContent = `${count} Stück`;
+      document.getElementById('subtotal').textContent = `CHF ${total}.–`;
+      document.getElementById('discount-hint').textContent = bookletCount >= 10
+        ? 'Deine Auswahl umfasst mindestens 10 Hefte. Bitte frage den Mengenrabatt an; seine Höhe wird individuell bestätigt.'
+        : 'Ab 10 Heften kannst du einen Mengenrabatt anfragen.';
+      mailButton.disabled = !hasEmail || !count;
+      if (hasEmail) {
+        mailStatus.textContent = count ? `Die Anfrage wird an ${CONTACT_EMAIL} vorbereitet.` : 'Wähle mindestens einen Artikel aus, um deine E-Mail-Anfrage vorzubereiten.';
+        mailStatus.style.background = '#eaf9f3';
+        mailStatus.style.color = '#276752';
+      }
+    }
+
+    function requestText() {
+      const items = selection();
+      if (!items.length) return '';
+      const count = items.reduce((sum, item) => sum + item.quantity, 0);
+      const total = items.reduce((sum, item) => sum + item.quantity * item.price, 0);
+      const bookletCount = items.filter(item => item.product === 'Lernheft' || item.product === 'Übungsheft').reduce((sum, item) => sum + item.quantity, 0);
+      const name = document.getElementById('customer-name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      return [
+        'Guten Tag', '',
+        'Ich interessiere mich für folgende gedruckten Lehrmittel:', '',
+        ...items.map(item => `${item.quantity} × ${item.subject}: ${item.product} (CHF ${item.quantity * item.price}.–)`),
+        '', `Gesamtanzahl: ${count}`, `Zwischensumme: CHF ${total}.– (ohne Versand und allfälligen Rabatt)`,
+        ...(bookletCount >= 10 ? ['', 'Bitte teilen Sie mir den Mengenrabatt für diese Bestellung mit.'] : []),
+        '', 'Bitte teilen Sie mir den definitiven Betrag inklusive Versandkosten sowie die Zahlungsinformationen für die Einzahlung mit.',
+        ...(message ? ['', 'Weitere Angaben:', message] : []),
+        '', 'Freundliche Grüsse', name || '[Name]'
+      ].join('\n');
+    }
+
+    quantityInputs.forEach(input => {
+      input.addEventListener('input', () => { feedback.textContent = ''; updateSummary(); });
+      input.addEventListener('change', () => {
+        const n = Number(input.value);
+        input.value = Number.isFinite(n) ? String(Math.max(0, Math.min(99, Math.floor(n)))) : '0';
+        updateSummary();
+      });
+    });
+    mailButton.addEventListener('click', () => {
+      if (!hasEmail || !selection().length) return;
+      const url = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Anfrage: Gedruckte Lehrmittel')}&body=${encodeURIComponent(requestText())}`;
+      window.location.href = url;
+      feedback.textContent = 'Bitte prüfe deine Nachricht und sende sie in deinem E-Mail-Programm ab.';
+    });
+    document.getElementById('copy-button').addEventListener('click', async () => {
+      const content = requestText();
+      if (!content) { feedback.textContent = 'Bitte wähle zuerst mindestens einen Artikel aus.'; return; }
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(content);
+        } else {
+          const helper = document.createElement('textarea');
+          helper.value = content;
+          helper.style.cssText = 'position:fixed;opacity:0;';
+          document.body.appendChild(helper);
+          helper.select();
+          const success = document.execCommand('copy');
+          helper.remove();
+          if (!success) throw new Error('Kopieren nicht verfügbar');
+        }
+        feedback.textContent = 'Anfragetext wurde kopiert.';
+      } catch (_) {
+        feedback.textContent = 'Automatisches Kopieren ist in diesem Browser nicht möglich. Bitte verwende die E-Mail-Funktion, sobald sie verfügbar ist.';
+      }
+    });
+    updateSummary();
+  </script>
+</body>
+</html>
